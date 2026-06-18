@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private int _pickupCount = 0;
     [SerializeField] private TextMeshProUGUI _countText;
-    [SerializeField] private GameObject _winTextObj;
+    [SerializeField] private TextMeshProUGUI _winTextObj;
     [SerializeField] private float _speed = 0;
 
     // Start is called before the first frame update.
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _pickupCount = 0;
         SetCountText();
-        _winTextObj.SetActive(false);
+        _winTextObj.gameObject.SetActive(false);
     }
 
     // This function is called when a move input is detected.
@@ -53,12 +53,23 @@ public class PlayerController : MonoBehaviour
             SetCountText();
             if (_pickupCount >= 11)
             {
-                _winTextObj.SetActive(true);
+                _winTextObj.gameObject.SetActive(true);
+                Destroy(GameObject.FindGameObjectWithTag("Enemy"));
             }
         }
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Destroy the current object
+            Destroy(gameObject);
+            // Update the winText to display "You Lose!"
+            _winTextObj.gameObject.SetActive(true);
+            _winTextObj.text = "You Lose!";
+        }
+    }
 
     private void SetCountText()
     {

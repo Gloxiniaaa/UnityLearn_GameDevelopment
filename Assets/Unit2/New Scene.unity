@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _countText: {fileID: 1022330831}
-  _winTextObj: {fileID: 1248797994}
+  _winTextObj: {fileID: 1248797996}
   _speed: 10
 --- !u!114 &1052132699
 MonoBehaviour:
@@ -2901,7 +2901,7 @@ GameObject:
   - component: {fileID: 2045519166}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
