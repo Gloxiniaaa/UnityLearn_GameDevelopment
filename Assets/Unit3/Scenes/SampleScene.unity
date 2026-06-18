@@ -896,6 +896,7 @@ MonoBehaviour:
   _scoreMultiplier: 5
   _boosterFlame: {fileID: 1019807804}
   _uIDocument: {fileID: 489713404}
+  _explosionVfx: {fileID: 1681934835093108118, guid: 20d612903f2262c458d37685f11e3138, type: 3}
 --- !u!58 &1345015607
 CircleCollider2D:
   m_ObjectHideFlags: 0

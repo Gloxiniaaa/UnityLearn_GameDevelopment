@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _scoreMultiplier;
     [SerializeField] private GameObject _boosterFlame;
     [SerializeField] private UIDocument _uIDocument;
+    [SerializeField] private GameObject _explosionVfx;
     private Label _scoreText;
+    private Button _restartButton;
     private Rigidbody2D _rb;
     private float _elapsedTime;
 
@@ -19,12 +22,26 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _boosterFlame.SetActive(false);
         _scoreText = _uIDocument.rootVisualElement.Q<Label>("ScoreLabel");
+        _restartButton = _uIDocument.rootVisualElement.Q<Button>("RestartButton");
+        _restartButton.style.display = DisplayStyle.None;
+        _restartButton.clicked += ReloadScene;
     }
+
     void Update()
     {
-        _elapsedTime += Time.deltaTime;
-        int score = Mathf.RoundToInt(_elapsedTime * _scoreMultiplier);
-        _scoreText.text = "Score: " + score.ToString();
+        UpdateScore();
+        MovePlayer();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Instantiate(_explosionVfx, transform.position, transform.rotation);
+        _restartButton.style.display = DisplayStyle.Flex;
+        Destroy(gameObject);
+    }
+
+    private void MovePlayer()
+    {
         if (Mouse.current.leftButton.isPressed)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
@@ -49,8 +66,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void UpdateScore()
     {
-        Destroy(gameObject);
+        _elapsedTime += Time.deltaTime;
+        int score = Mathf.RoundToInt(_elapsedTime * _scoreMultiplier);
+        _scoreText.text = "Score: " + score.ToString();
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
