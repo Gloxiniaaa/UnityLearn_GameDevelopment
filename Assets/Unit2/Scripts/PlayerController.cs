@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     private void SetCountText()
     {
         _countText.text = "Count: " + _pickupCount;
