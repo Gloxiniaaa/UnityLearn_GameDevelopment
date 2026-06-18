@@ -1,16 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    // Rigidbody of the player.
     private Rigidbody _rb;
-
-    // Movement along X and Y axes.
     private float _movementX;
     private float _movementY;
 
-    // Speed at which the player moves.
+    private int _pickupCount = 0;
+    [SerializeField] private TextMeshProUGUI _countText;
+    [SerializeField] private GameObject _winTextObj;
     [SerializeField] private float _speed = 0;
 
     // Start is called before the first frame update.
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     {
         // Get and store the Rigidbody component attached to the player.
         _rb = GetComponent<Rigidbody>();
+        _pickupCount = 0;
+        SetCountText();
+        _winTextObj.SetActive(false);
     }
 
     // This function is called when a move input is detected.
@@ -45,6 +49,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Pickup"))
         {
             other.gameObject.SetActive(false);
+            _pickupCount++;
+            SetCountText();
+            if (_pickupCount >= 11)
+            {
+                _winTextObj.SetActive(true);
+            }
         }
+    }
+
+    private void SetCountText()
+    {
+        _countText.text = "Count: " + _pickupCount;
     }
 }
