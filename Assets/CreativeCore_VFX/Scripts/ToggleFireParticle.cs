@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(ParticleSystem))]
 
 public class ToggleFireParticle : MonoBehaviour
 {
-    public KeyCode toggleKey = KeyCode.Space;
-
     private ParticleSystem fireParticle;
     public ParticleSystem igniteParticle;
     public ParticleSystem extinguishParticle;
@@ -22,7 +19,7 @@ public class ToggleFireParticle : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             if(isPlaying)
             {
