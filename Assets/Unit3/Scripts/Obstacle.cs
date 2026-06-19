@@ -6,8 +6,10 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float _maxSize = 2.0f;
     [SerializeField] private float _minSpeed = 50f;
     [SerializeField] private float _maxSpeed = 150f;
+    [SerializeField] private AudioClip _impactSfx;
 
-    Rigidbody2D rb;
+    Rigidbody2D _rb;
+    AudioSource _as;
 
     void Start()
     {
@@ -17,7 +19,13 @@ public class Obstacle : MonoBehaviour
         float randomSpeed = Random.Range(_minSpeed, _maxSpeed) / randomSize;
         Vector2 randomDirection = Random.insideUnitCircle;
 
-        rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(randomDirection * randomSpeed);
+        _as = GetComponent<AudioSource>();
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.AddForce(randomDirection * randomSpeed);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        _as.PlayOneShot(_impactSfx);
     }
 }
