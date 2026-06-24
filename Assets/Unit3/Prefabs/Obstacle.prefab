@@ -289,3 +289,4 @@ MonoBehaviour:
   _minSpeed: 300
   _maxSpeed: 700
   _impactSfx: {fileID: 8300000, guid: 0c2258799740c3b4fa07b777fc75d17f, type: 3}
+  _impactVfx: {fileID: 3139760641886599831, guid: 10e03984d5e3d01489f66911c954d118, type: 3}

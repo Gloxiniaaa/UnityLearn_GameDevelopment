@@ -440,7 +440,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0.9070755, b: 0.5518868, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bdade8e901aab46a5826e07557bf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _thrustForce: 1
+  _thrustForce: 1.5
   _maxSpeed: 10
   _scoreMultiplier: 5
   _uIDocument: {fileID: 489713404}
@@ -1258,7 +1258,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0.9070755, b: 0.5518868, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1518,10 +1518,6 @@ PrefabInstance:
     - target: {fileID: 3062613122913365852, guid: 3ff9769c7bd0b504b80e4beaf4e7a0e2, type: 3}
       propertyPath: m_Name
       value: Obstacle (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004068709546107292, guid: 3ff9769c7bd0b504b80e4beaf4e7a0e2, type: 3}
-      propertyPath: _maxSize
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1933,6 +1929,63 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1422235998285649708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3139760641886599831, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_Name
+      value: ImpactVfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.94367
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831679146871975103, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10e03984d5e3d01489f66911c954d118, type: 3}
 --- !u!1001 &8250546324722055708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1999,3 +2052,4 @@ SceneRoots:
   - {fileID: 137555789}
   - {fileID: 1345015603}
   - {fileID: 489713405}
+  - {fileID: 1422235998285649708}
