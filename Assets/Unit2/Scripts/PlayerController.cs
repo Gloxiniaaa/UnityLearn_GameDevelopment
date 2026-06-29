@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody _rb;
-    private float _movementX;
-    private float _movementY;
-
-    private int _pickupCount = 0;
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private TextMeshProUGUI _winTextObj;
     [SerializeField] private float _speed = 0;
+    [SerializeField] private bool _isMoving = false;
+    private Rigidbody _rb;
+    private float _movementX;
+    private float _movementY;
+    private int _pickupCount = 0;
+    private Vector3 _target;
 
     // Start is called before the first frame update.
     void Start()
@@ -35,14 +36,45 @@ public class PlayerController : MonoBehaviour
         _movementY = movementVector.y;
     }
 
-    // FixedUpdate is called once per fixed frame-rate frame.
+
+    private void Update()
+    {
+        if (Pointer.current.press.isPressed)
+        {
+            Vector2 aimPos = Pointer.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(aimPos);
+            Debug.DrawRay(ray.origin, ray.direction * 50, Color.yellow);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, 1 << 4))
+            {
+                _target = hit.point;
+                _isMoving = true;
+            }
+        }
+        else
+        {
+            _isMoving = false;
+        }
+    }
+
     void FixedUpdate()
     {
         // Create a 3D movement vector using the X and Y inputs.
         Vector3 movement = new Vector3(_movementX, 0.0f, _movementY);
 
         // Apply force to the Rigidbody to move the player.
-        _rb.AddForce(movement * _speed);
+        _rb.AddForce(movement.normalized * _speed);
+
+        if (_isMoving)
+        {
+            Vector3 direction = _target - transform.position;
+            _rb.AddForce(direction.normalized * _speed);
+
+            if (direction.sqrMagnitude < 0.5f)
+            {
+                _isMoving = false;
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {

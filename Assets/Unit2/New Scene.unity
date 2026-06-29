@@ -1663,6 +1663,7 @@ MonoBehaviour:
   _countText: {fileID: 1022330831}
   _winTextObj: {fileID: 1248797996}
   _speed: 10
+  _isMoving: 0
 --- !u!114 &1052132699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,7 +2020,7 @@ GameObject:
   - component: {fileID: 1216996422}
   - component: {fileID: 1216996421}
   - component: {fileID: 1216996425}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
